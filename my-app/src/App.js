@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Card from './components/Card';
 
 
 class App extends React.Component {
@@ -13,7 +14,7 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get("https://api.github.com/users/")
+      .get("https://api.github.com/users/robertmurdoch/followers")
       .then(res => {
         this.setState({hubData: res.data})
         console.log(res.data)
@@ -24,7 +25,8 @@ class App extends React.Component {
     render(){
       return (
         <div className="App">
-          <h1>Test</h1>
+          <h1>Welcome to the Thunderdome</h1>
+          <Card  hubData = {this.state.hubData}/>
         </div>
   );
  }
