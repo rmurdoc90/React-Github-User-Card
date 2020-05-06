@@ -9,8 +9,8 @@ class App extends React.Component {
   constructor (){
     super();
     this.state = {
-        myData:[],
-        hubData:[]
+        user:[],
+        followers:[]
     }
   }
 
@@ -18,23 +18,20 @@ class App extends React.Component {
     axios
       .get("https://api.github.com/users/rmurdoc90")
       .then(res => {
-        this.setState({myData: res.data})
+        this.setState({user: res.data})
         console.log(res.data)
       })
       .catch(err => console.log(err));
 
-    }
-
-    fetchData = e => {
-      e.preventDefault()
-        axios
-        .get("https://api.github.com/users/rmurdoc90/followers")
+      axios
+        .get("https://api.github.com/users/robertmurdoch/followers")
         .then(res => {
-          this.setState({hubData: res.data})
+          this.setState({followers: res.data})
           console.log(res.data)
         })
         .catch(err => console.log(err));
-  }
+    }
+
 
 
 
@@ -42,7 +39,7 @@ class App extends React.Component {
       return (
         <div className="App">
           <h1>Welcome to the Thunderdome</h1>
-          <Card hubData = {this.state.hubData} myData = {this.state.myData}/>
+          <Card data = {this.state}/>
         </div>
   );
  }
